@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{sale.pavadinimas}}
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-12">
+			<h2 class="text-center">{{sale.pavadinimas}}</h2>
+			<h3 class="text-center">{{sale.gatve}}
+				{{sale.namoNr}},
+				{{sale.miestas}}
+			</h3>
+			<h3 class="text-center">
+				{{sale.dirbaNuo|date("H:i")}}
+				-
+				{{sale.dirbaIki|date("H:i")}}
+			</h3>
+            <h3 class="text-center">
+                {{sale.tipas.name|capitalize}}
+            </h3>
+		</div>
+
+	</div>
+{% endblock %}
