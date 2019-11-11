@@ -36,11 +36,6 @@ class SalesController extends AbstractController
      */
     public function show($id)
     {
-        /* return $this->render('sales/index.html.twig', [
-            'controller_name' => 'SalesController',
-        ]); */
-
-
         $sale = $this->getDoctrine()
             ->getRepository(SportoSale::class)
             ->find($id);

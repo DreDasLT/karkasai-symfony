@@ -13,31 +13,25 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Pavadinimas</th>
-							<th scope="col">Gatvė Namo. Nr, Miestas</th>
-							<th scope="col">Darbo laikas</th>
-                            <th scope="col">Tipas</th>
+                            <th scope="col">Darbuotojo Nr.</th>
+							<th scope="col">Asmens kodas</th>
+							<th scope="col">Vardas Pavardė</th>
+							<th scope="col">Tel. Nr</th>
+                            <th scope="col">Adresas</th>
+                            <th scope="col">Sporto salė</th>
 						</tr>
 					</thead>
 					<tbody>
-						{% for sale in sales %}
+						{% for darbuotojas in darbuotojai %}
 							<tr>
-								<th scope="row">{{sale.idSportoSale}}</th>
-								<td>{{sale.pavadinimas}}</td>
-								<td>{{sale.gatve}}
-									{{sale.namoNr}},
-									{{sale.miestas}}</td>
-								<td>{{sale.dirbaNuo|date("H:i")}}
-									-
-									{{sale.dirbaIki|date("H:i")}}</td>
-                                <td>
-									<a href="{{ path('saliu_tipai_show', {'id': sale.tipas.idSaliuTipai}) }}">
-										{{sale.tipas.name|capitalize}}
-									</a>
-								</td>
+								<th scope="row">{{darbuotojas.tabNr}}</th>
+                                <td>{{darbuotojas.asmensKodas}}</td>
+								<td>{{darbuotojas.vardas}} {{darbuotojas.pavarde}}</td>
+                                <td>{{darbuotojas.telNr}}</td>
+								<td>{{darbuotojas.gatve}}, {{darbuotojas.miestas}}</td>
+                                <td>{{darbuotojas.fkSportoSaleidSportoSale.pavadinimas}}</td>
 								<td>
-									<a href="{{ path('sale_show', {'id': sale.idSportoSale}) }}">
+									<a href="{{ path('darbuotojai_show', {'id': darbuotojas.tabNr}) }}">
 										<button type="button" class="btn btn-primary">
 											<i class="far fa-eye"></i>
 										</button>

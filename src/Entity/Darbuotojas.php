@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\SportoSale;
 
 /**
  * Darbuotojas
@@ -59,14 +60,14 @@ class Darbuotojas
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="dirba_nuo", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="dirba_nuo", type="time", nullable=true, options={"default"="NULL"})
      */
     private $dirbaNuo = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="dirba_iki", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="dirba_iki", type="time", nullable=true, options={"default"="NULL"})
      */
     private $dirbaIki = 'NULL';
 

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{darbuotojas.vardas}} {{darbuotojas.pavarde}}
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-12">
+			<h2 class="text-center">{{darbuotojas.vardas}} {{darbuotojas.pavarde}}</h2>
+            <h3 class="text-center">{{darbuotojas.asmensKodas}}</h3>
+			<h3 class="text-center">{{darbuotojas.gatve}}, {{darbuotojas.miestas}}</h3>
+			<h3 class="text-center">{{darbuotojas.telNr}}</h3>
+            <h3 class="text-center">{{darbuotojas.elPastas}}</h3>
+            <h3 class="text-center">{{darbuotojas.dirbaNuo|date("H:i")}} - {{darbuotojas.dirbaIki|date("H:i")}}</h3>
+            <h3 class="text-center">{{darbuotojas.isidarbinimoData|date("Y-m-d")}} - {{darbuotojas.nebedirboNuo|date("Y-m-d")}}</h3>				
+            <h3 class="text-center">{{darbuotojas.fkSportoSaleidSportoSale.pavadinimas}}</h3>
+        </div>
+
+	</div>
+{% endblock %}

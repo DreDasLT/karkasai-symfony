@@ -50,13 +50,6 @@ class Klientas
     private $elPastas = 'NULL';
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="praleista_laiko", type="date", nullable=true, options={"default"="NULL"})
-     */
-    private $praleistaLaiko = 'NULL';
-
-    /**
      * @var string|null
      *
      * @ORM\Column(name="miestas", type="string", length=255, nullable=true, options={"default"="NULL"})
@@ -119,18 +112,6 @@ class Klientas
     public function setElPastas(?string $elPastas): self
     {
         $this->elPastas = $elPastas;
-
-        return $this;
-    }
-
-    public function getPraleistaLaiko(): ?\DateTimeInterface
-    {
-        return $this->praleistaLaiko;
-    }
-
-    public function setPraleistaLaiko(?\DateTimeInterface $praleistaLaiko): self
-    {
-        $this->praleistaLaiko = $praleistaLaiko;
 
         return $this;
     }
