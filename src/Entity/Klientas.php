@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,14 +14,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Klientas
 {
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="asm_kodas", type="string", length=255, nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $asmKodas;
+    private $id;
 
     /**
      * @var string|null
@@ -63,9 +64,14 @@ class Klientas
      */
     private $gatve = 'NULL';
 
-    public function getAsmKodas(): ?string
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Abonementas", mappedBy="klientas", orphanRemoval=true)
+     */
+    private $abonementai;
+
+    public function __construct()
     {
-        return $this->asmKodas;
+        $this->abonementai = new ArrayCollection();
     }
 
     public function getVardas(): ?string
@@ -136,6 +142,37 @@ class Klientas
     public function setGatve(?string $gatve): self
     {
         $this->gatve = $gatve;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Abonementas[]
+     */
+    public function getAbonementai(): Collection
+    {
+        return $this->abonementai;
+    }
+
+    public function addAbonementai(Abonementas $abonementai): self
+    {
+        if (!$this->abonementai->contains($abonementai)) {
+            $this->abonementai[] = $abonementai;
+            $abonementai->setKlientas($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAbonementai(Abonementas $abonementai): self
+    {
+        if ($this->abonementai->contains($abonementai)) {
+            $this->abonementai->removeElement($abonementai);
+            // set the owning side to null (unless already changed)
+            if ($abonementai->getKlientas() === $this) {
+                $abonementai->setKlientas(null);
+            }
+        }
 
         return $this;
     }

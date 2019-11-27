@@ -5,52 +5,49 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Abonementas
- *
- * @ORM\Table(name="abonementas", indexes={@ORM\Index(name="priklauso", columns={"fk_KLIENTASasm_kodas"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\AbonementasRepository")
  */
 class Abonementas
 {
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="galioja_nuo", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $galiojaNuo = 'NULL';
+    private $id;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="galioja_iki", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="datetime")
      */
-    private $galiojaIki = 'NULL';
+    private $galiojaNuo;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_ABONEMENTAS", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(type="datetime")
      */
-    private $idAbonementas;
+    private $galiojaIki;
 
     /**
-     * @var \Klientas
-     *
-     * @ORM\ManyToOne(targetEntity="Klientas")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fk_KLIENTASasm_kodas", referencedColumnName="asm_kodas")
-     * })
+     * @ORM\ManyToOne(targetEntity="App\Entity\Klientas", inversedBy="abonementai")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $fkKlientasasmKodas;
+    private $klientas;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sale", inversedBy="abonementai")
+     */
+    private $sale;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getGaliojaNuo(): ?\DateTimeInterface
     {
         return $this->galiojaNuo;
     }
 
-    public function setGaliojaNuo(?\DateTimeInterface $galiojaNuo): self
+    public function setGaliojaNuo(\DateTimeInterface $galiojaNuo): self
     {
         $this->galiojaNuo = $galiojaNuo;
 
@@ -62,29 +59,34 @@ class Abonementas
         return $this->galiojaIki;
     }
 
-    public function setGaliojaIki(?\DateTimeInterface $galiojaIki): self
+    public function setGaliojaIki(\DateTimeInterface $galiojaIki): self
     {
         $this->galiojaIki = $galiojaIki;
 
         return $this;
     }
 
-    public function getIdAbonementas(): ?int
+    public function getKlientas(): ?Klientas
     {
-        return $this->idAbonementas;
+        return $this->klientas;
     }
 
-    public function getFkKlientasasmKodas(): ?Klientas
+    public function setKlientas(?Klientas $klientas): self
     {
-        return $this->fkKlientasasmKodas;
-    }
-
-    public function setFkKlientasasmKodas(?Klientas $fkKlientasasmKodas): self
-    {
-        $this->fkKlientasasmKodas = $fkKlientasasmKodas;
+        $this->klientas = $klientas;
 
         return $this;
     }
 
+    public function getSale(): ?Sale
+    {
+        return $this->sale;
+    }
 
+    public function setSale(?Sale $sale): self
+    {
+        $this->sale = $sale;
+
+        return $this;
+    }
 }

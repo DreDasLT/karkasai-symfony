@@ -3,127 +3,72 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\SportoSale;
 
 /**
- * Darbuotojas
- *
- * @ORM\Table(name="darbuotojas", indexes={@ORM\Index(name="dirba", columns={"fk_SPORTO_SALEid_SPORTO_SALE"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\DarbuotojasRepository")
  */
 class Darbuotojas
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="tab_nr", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $tabNr;
+    private $id;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="asmens_kodas", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $asmensKodas = 'NULL';
+    private $vardas;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="vardas", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $vardas = 'NULL';
+    private $pavarde;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="pavarde", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $pavarde = 'NULL';
+    private $telNr;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="tel_nr", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $telNr = 'NULL';
+    private $elPastas;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="el_pastas", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="time", nullable=true)
      */
-    private $elPastas = 'NULL';
+    private $dirbaNuo;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="dirba_nuo", type="time", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="time", nullable=true)
      */
-    private $dirbaNuo = 'NULL';
+    private $dirbaIki;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="dirba_iki", type="time", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $dirbaIki = 'NULL';
+    private $isidarbinimoData;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="isidarbinimo_data", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $isidarbinimoData = 'NULL';
+    private $nebedirbaNuo;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="nebedirbo_nuo", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $nebedirboNuo = 'NULL';
+    private $miestas;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="miestas", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $miestas = 'NULL';
+    private $gatve;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="gatve", type="string", length=255, nullable=true, options={"default"="NULL"})
-     */
-    private $gatve = 'NULL';
-
-    /**
-     * @var \SportoSale
-     *
-     * @ORM\ManyToOne(targetEntity="SportoSale")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fk_SPORTO_SALEid_SPORTO_SALE", referencedColumnName="id_SPORTO_SALE")
-     * })
-     */
-    private $fkSportoSaleidSportoSale;
-
-    public function getTabNr(): ?int
+    public function getId(): ?int
     {
-        return $this->tabNr;
-    }
-
-    public function getAsmensKodas(): ?string
-    {
-        return $this->asmensKodas;
-    }
-
-    public function setAsmensKodas(?string $asmensKodas): self
-    {
-        $this->asmensKodas = $asmensKodas;
-
-        return $this;
+        return $this->id;
     }
 
     public function getVardas(): ?string
@@ -210,14 +155,14 @@ class Darbuotojas
         return $this;
     }
 
-    public function getNebedirboNuo(): ?\DateTimeInterface
+    public function getNebedirbaNuo(): ?\DateTimeInterface
     {
-        return $this->nebedirboNuo;
+        return $this->nebedirbaNuo;
     }
 
-    public function setNebedirboNuo(?\DateTimeInterface $nebedirboNuo): self
+    public function setNebedirbaNuo(?\DateTimeInterface $nebedirbaNuo): self
     {
-        $this->nebedirboNuo = $nebedirboNuo;
+        $this->nebedirbaNuo = $nebedirbaNuo;
 
         return $this;
     }
@@ -245,18 +190,4 @@ class Darbuotojas
 
         return $this;
     }
-
-    public function getFkSportoSaleidSportoSale(): ?SportoSale
-    {
-        return $this->fkSportoSaleidSportoSale;
-    }
-
-    public function setFkSportoSaleidSportoSale(?SportoSale $fkSportoSaleidSportoSale): self
-    {
-        $this->fkSportoSaleidSportoSale = $fkSportoSaleidSportoSale;
-
-        return $this;
-    }
-
-
 }
