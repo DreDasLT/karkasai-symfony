@@ -74,6 +74,11 @@ class Klientas
         $this->abonementai = new ArrayCollection();
     }
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public function getVardas(): ?string
     {
         return $this->vardas;
@@ -177,5 +182,8 @@ class Klientas
         return $this;
     }
 
-
+    public function __toString()
+    {
+        return "$this->vardas $this->pavarde";
+    }
 }

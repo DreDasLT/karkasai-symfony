@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abonementas{% endblock %}
+
+{% block body %}
+    <h1>Abonementas</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ abonementa.id }}</td>
+            </tr>
+            <tr>
+                <th>GaliojaNuo</th>
+                <td>{{ abonementa.galiojaNuo ? abonementa.galiojaNuo|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>GaliojaIki</th>
+                <td>{{ abonementa.galiojaIki ? abonementa.galiojaIki|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('abonementas_index') }}">back to list</a>
+
+    <a href="{{ path('abonementas_edit', {'id': abonementa.id}) }}">edit</a>
+
+    {{ include('abonementas/_delete_form.html.twig') }}
+{% endblock %}

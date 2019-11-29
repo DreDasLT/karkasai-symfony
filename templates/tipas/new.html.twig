@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Tipas{% endblock %}
+
+{% block body %}
+    <h1>Create new Tipas</h1>
+
+    {{ include('tipas/_form.html.twig') }}
+
+    <a href="{{ path('tipas_index') }}">back to list</a>
+{% endblock %}

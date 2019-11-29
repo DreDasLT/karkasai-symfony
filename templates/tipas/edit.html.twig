@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Tipas{% endblock %}
+
+{% block body %}
+    <h1>Edit Tipas</h1>
+
+    {{ include('tipas/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('tipas_index') }}">back to list</a>
+
+    {{ include('tipas/_delete_form.html.twig') }}
+{% endblock %}

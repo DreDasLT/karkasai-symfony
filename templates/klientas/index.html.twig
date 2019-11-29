@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Klientas index{% endblock %}
+
+{% block body %}
+    <h1>Klientas index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Vardas</th>
+                <th>Pavarde</th>
+                <th>TelNr</th>
+                <th>ElPastas</th>
+                <th>Miestas</th>
+                <th>Gatve</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for klienta in klientas %}
+            <tr>
+                <td>{{ klienta.id }}</td>
+                <td>{{ klienta.vardas }}</td>
+                <td>{{ klienta.pavarde }}</td>
+                <td>{{ klienta.telNr }}</td>
+                <td>{{ klienta.elPastas }}</td>
+                <td>{{ klienta.miestas }}</td>
+                <td>{{ klienta.gatve }}</td>
+                <td>
+                    <a href="{{ path('klientas_show', {'id': klienta.id}) }}">show</a>
+                    <a href="{{ path('klientas_edit', {'id': klienta.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('klientas_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abonementas index{% endblock %}
+
+{% block body %}
+    <h1>Abonementas index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>GaliojaNuo</th>
+                <th>GaliojaIki</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for abonementa in abonementas %}
+            <tr>
+                <td>{{ abonementa.id }}</td>
+                <td>{{ abonementa.galiojaNuo ? abonementa.galiojaNuo|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ abonementa.galiojaIki ? abonementa.galiojaIki|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('abonementas_show', {'id': abonementa.id}) }}">show</a>
+                    <a href="{{ path('abonementas_edit', {'id': abonementa.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('abonementas_new') }}">Create new</a>
+{% endblock %}

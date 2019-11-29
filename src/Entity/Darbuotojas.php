@@ -66,6 +66,11 @@ class Darbuotojas
      */
     private $gatve;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sale", inversedBy="darbuotojai")
+     */
+    private $sale;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -187,6 +192,23 @@ class Darbuotojas
     public function setGatve(?string $gatve): self
     {
         $this->gatve = $gatve;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return "$this->vardas $this->pavarde";
+    }
+
+    public function getSale(): ?Sale
+    {
+        return $this->sale;
+    }
+
+    public function setSale(?Sale $sale): self
+    {
+        $this->sale = $sale;
 
         return $this;
     }

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Darbuotojas{% endblock %}
+
+{% block body %}
+    <h1>Edit Darbuotojas</h1>
+
+    {{ include('darbuotojas/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('darbuotojas_index') }}">back to list</a>
+
+    {{ include('darbuotojas/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Darbuotojas index{% endblock %}
+
+{% block body %}
+    <h1>Darbuotojas index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Vardas</th>
+                <th>Pavarde</th>
+                <th>TelNr</th>
+                <th>ElPastas</th>
+                <th>DirbaNuo</th>
+                <th>DirbaIki</th>
+                <th>IsidarbinimoData</th>
+                <th>NebedirbaNuo</th>
+                <th>Miestas</th>
+                <th>Gatve</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for darbuotoja in darbuotojas %}
+            <tr>
+                <td>{{ darbuotoja.id }}</td>
+                <td>{{ darbuotoja.vardas }}</td>
+                <td>{{ darbuotoja.pavarde }}</td>
+                <td>{{ darbuotoja.telNr }}</td>
+                <td>{{ darbuotoja.elPastas }}</td>
+                <td>{{ darbuotoja.dirbaNuo ? darbuotoja.dirbaNuo|date('H:i:s') : '' }}</td>
+                <td>{{ darbuotoja.dirbaIki ? darbuotoja.dirbaIki|date('H:i:s') : '' }}</td>
+                <td>{{ darbuotoja.isidarbinimoData ? darbuotoja.isidarbinimoData|date('Y-m-d') : '' }}</td>
+                <td>{{ darbuotoja.nebedirbaNuo ? darbuotoja.nebedirbaNuo|date('Y-m-d') : '' }}</td>
+                <td>{{ darbuotoja.miestas }}</td>
+                <td>{{ darbuotoja.gatve }}</td>
+                <td>
+                    <a href="{{ path('darbuotojas_show', {'id': darbuotoja.id}) }}">show</a>
+                    <a href="{{ path('darbuotojas_edit', {'id': darbuotoja.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('darbuotojas_new') }}">Create new</a>
+{% endblock %}

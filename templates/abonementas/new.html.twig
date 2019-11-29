@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Abonementas{% endblock %}
+
+{% block body %}
+    <h1>Create new Abonementas</h1>
+
+    {{ include('abonementas/_form.html.twig') }}
+
+    <a href="{{ path('abonementas_index') }}">back to list</a>
+{% endblock %}

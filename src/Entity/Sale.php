@@ -58,9 +58,15 @@ class Sale
      */
     private $abonementai;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Darbuotojas", mappedBy="sale")
+     */
+    private $darbuotojai;
+
     public function __construct()
     {
         $this->abonementai = new ArrayCollection();
+        $this->darbuotojai = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -177,6 +183,42 @@ class Sale
             // set the owning side to null (unless already changed)
             if ($abonementai->getSale() === $this) {
                 $abonementai->setSale(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->pavadinimas;
+    }
+
+    /**
+     * @return Collection|Darbuotojas[]
+     */
+    public function getDarbuotojai(): Collection
+    {
+        return $this->darbuotojai;
+    }
+
+    public function addDarbuotojai(Darbuotojas $darbuotojai): self
+    {
+        if (!$this->darbuotojai->contains($darbuotojai)) {
+            $this->darbuotojai[] = $darbuotojai;
+            $darbuotojai->setSale($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDarbuotojai(Darbuotojas $darbuotojai): self
+    {
+        if ($this->darbuotojai->contains($darbuotojai)) {
+            $this->darbuotojai->removeElement($darbuotojai);
+            // set the owning side to null (unless already changed)
+            if ($darbuotojai->getSale() === $this) {
+                $darbuotojai->setSale(null);
             }
         }
 

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sale{% endblock %}
+
+{% block body %}
+    <h1>Sale</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sale.id }}</td>
+            </tr>
+            <tr>
+                <th>Pavadinimas</th>
+                <td>{{ sale.pavadinimas }}</td>
+            </tr>
+            <tr>
+                <th>Miestas</th>
+                <td>{{ sale.miestas }}</td>
+            </tr>
+            <tr>
+                <th>Gatve</th>
+                <td>{{ sale.gatve }}</td>
+            </tr>
+            <tr>
+                <th>NamoNr</th>
+                <td>{{ sale.namoNr }}</td>
+            </tr>
+            <tr>
+                <th>DirbaNuo</th>
+                <td>{{ sale.dirbaNuo ? sale.dirbaNuo|date('H:i') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DirbaIki</th>
+                <td>{{ sale.dirbaIki ? sale.dirbaIki|date('H:i') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('sale_index') }}">back to list</a>
+
+    <a href="{{ path('sale_edit', {'id': sale.id}) }}">edit</a>
+
+    {{ include('sale/_delete_form.html.twig') }}
+{% endblock %}
